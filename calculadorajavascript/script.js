@@ -43,54 +43,48 @@ test[9].onclick = () =>{//igual
         alert("Inserta más numeros")
         
     }
-    let tetris = resultado.value.split('')
     let aux = 0;
     // console.log(tetris)
-    for(i in tetris){
-        let mulOP = resultado.value.split('*')
-        if(tetris[i] == '*'){
-            aux = 1;
-            for(let i=0; i<mulOP.length; i++){
-                    aux *= parseInt(mulOP[i])
-            }
-            resultado.value = aux;
+    if(resultado.value.includes('+') == true){
+        let resInput = resultado.value.split('+')
+        for(let i=0; i<resInput.length; i++){
+            aux += parseInt(resInput[i])
         }
-        let divOP = resultado.value.split('/')
-        if(tetris[i] == '/'){
-            for(let i=0; i<divOP.length; i++){
-                    if(i==0){
-                        aux = parseInt(divOP[0])
-                    }else{
-                        aux /= parseInt(divOP[i])
-                    }
+        resultado.value = aux;
+    }else if(resultado.value.includes('-') == true){
+        let resInput = resultado.value.split('-')
+        for(let i = 0; i<resInput.length; i++){
+            if(i==0){
+                aux = parseInt(resInput[0])
+            }else{
+                aux -= parseInt(resInput[i])
             }
-            resultado.value = aux;
         }
-        let sumOP = resultado.value.split('+')
-        if(tetris[i] == '+'){
-            for(let i=0; i<sumOP.length; i++){
-                    aux += parseInt(sumOP[i])
+        resultado.value = aux;
+    }else if(resultado.value.includes('/') == true){
+        let resInput = resultado.value.split('/')
+        for(let i=0; i<resInput.length; i++){
+            if(i==0){
+                aux = parseInt(resInput[0])
+            }else{
+                aux /= parseInt(resInput[i])
             }
-            resultado.value = aux;
         }
-        let resOP = resultado.value.split('-')
-        if(tetris[i] == '-'){
-            for(let i=0; i<resOP.length; i++){
-                if(i==0){
-                    aux = parseInt(resOP[0])
-                }else{
-                    aux -= parseInt(resOP[i])
-                }
-            }
-            resultado.value = aux;
+        resultado.value = aux;
+    }else{
+        let resInput = resultado.value.split('*')
+        aux = 1;
+        for(let i=0; i<resInput.length; i++){
+            aux *= parseInt(resInput[i])
         }
+        resultado.value = aux;
     }
-    // console.log('hola' + position)
+
+}
 
     
     
-    
-}
+
 test[10].onclick = () =>{
     resultado.value = '';
 }
